@@ -1,0 +1,14 @@
+ul {
+  list-style: none;
+  padding: 0;
+  li {
+    cursor: pointer;
+    padding: 0.5em 1em;
+    &:hover {
+      background: #eee;
+    }
+    a:hover {
+      text-decoration: none;
+    }
+  }
+}
