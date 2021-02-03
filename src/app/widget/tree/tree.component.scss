@@ -1,0 +1,21 @@
+.tree {
+  display: flex;
+  flex-flow: column;
+  background: hsla(0, 0%, 50%, 0.1);
+  align-items: flex-start;
+  > span {
+    margin: 0.1em;
+    padding: 0.1em;
+  }
+  > .children {
+    font-size: 0.95em;
+    display: flex;
+    flex-flow: column;
+    margin-left: 1em;
+  }
+}
+
+.current {
+  background-color: black;
+  color: white;
+}

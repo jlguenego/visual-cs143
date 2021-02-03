@@ -1,0 +1,8 @@
+<div class="tree">
+  <span [class.current]="tree === currentTree">{{ tree?.node }}</span>
+  <div class="children">
+    <div *ngFor="let c of tree?.children">
+      <app-tree [tree]="c" [currentTree]="currentTree"></app-tree>
+    </div>
+  </div>
+</div>

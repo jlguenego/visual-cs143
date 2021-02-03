@@ -1,0 +1,42 @@
+:host {
+  width: 100%;
+  max-width: 25em;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 50fr 50fr;
+  grid-template-rows: 3em 30em;
+  grid-template-areas:
+    "testing restart"
+    "tree stack";
+  grid-gap: 0.5em 0.5em;
+  div.testing {
+    grid-area: testing;
+    div {
+      border: 0.1em solid #333;
+      padding: 0.5em 1em;
+      display: flex;
+      align-items: center;
+      .current-value {
+        padding-left: 0.5em;
+        font-weight: bold;
+      }
+    }
+
+    div.found {
+      background: #333;
+      color: white;
+    }
+  }
+  div.restart {
+    grid-area: restart;
+  }
+  app-stack {
+    grid-area: stack;
+    overflow: hidden;
+  }
+
+  app-tree {
+    grid-area: tree;
+    overflow: hidden;
+  }
+}

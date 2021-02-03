@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  flex-flow: row wrap;
+
+  .row {
+    height: 1.5em;
+    width: 100%;
+    margin-bottom: 0.2em;
+    background: #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

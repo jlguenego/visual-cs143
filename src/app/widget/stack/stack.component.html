@@ -1,0 +1,5 @@
+<div class="container">
+  <div class="row" *ngFor="let n of stack; index as i" [@inOutAnimation]>
+    <span>{{ n.node }}</span>
+  </div>
+</div>

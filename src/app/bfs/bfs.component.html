@@ -9,11 +9,23 @@
     <p>
       This animation shows the a very simple breadth first search in action.
     </p>
-    <p>We consider a tree of integer values. The root value is 3.</p>
+    <p>We consider a tree of integer values. The root value is 6.</p>
+    <p>We look in the tree for a node which value is > 10.</p>
     <p>
-      For each tree node, we can compute its children. In this example, the
-      <code>getChildren(node)</code> function takes the node value integer N in
-      input and returns 3 childrens with value respective N+1, N+2, N+3.
+      For each tree node, we must be able to compute its children. In this
+      example, the getChildren function takes the node value integer N in input
+      and returns 2 childrens with value respective N+1, N+2.
     </p>
+    <p>
+      In this example, when the first node which value strictly greater than 10
+      is met, the search stops, and the stack is cleaned.
+    </p>
+    <h2>Animation</h2>
+    <p>See the tree, the stack and the current tested value:</p>
   </article>
+  <app-bfs-anim
+    rootValue="6"
+    [test]="test"
+    [getChildren]="getChildren"
+  ></app-bfs-anim>
 </main>
