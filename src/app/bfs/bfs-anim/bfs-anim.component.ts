@@ -1,4 +1,4 @@
-import { Component, Input, NgZone, OnInit } from '@angular/core';
+import { Component, Input, NgZone, OnDestroy, OnInit } from '@angular/core';
 import {
   BFSTreeAsync,
   BFSTreeAsyncGetChildrenFn,
@@ -12,7 +12,7 @@ import { BehaviorSubject } from 'rxjs';
   templateUrl: './bfs-anim.component.html',
   styleUrls: ['./bfs-anim.component.scss'],
 })
-export class BfsAnimComponent implements OnInit {
+export class BfsAnimComponent implements OnInit, OnDestroy {
   @Input() rootValue = '1';
   @Input() test!: BFSTreeAsyncTestValueFn<string>;
   @Input() getChildren!: BFSTreeAsyncGetChildrenFn<string>;
@@ -54,5 +54,11 @@ export class BfsAnimComponent implements OnInit {
     const result = await this.bfsTree.search();
     this.searching = false;
     console.log('result: ', result);
+  }
+
+  ngOnDestroy(): void {
+    if (this.bfsTree) {
+      this.bfsTree.interrupt();
+    }
   }
 }
