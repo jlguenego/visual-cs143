@@ -4,7 +4,11 @@
   }}</span>
   <div class="children">
     <div *ngFor="let c of tree?.children">
-      <app-tree [tree]="c" [currentTree]="currentTree"></app-tree>
+      <app-tree
+        [tree]="c"
+        [currentTree]="currentTree"
+        [nodeToString]="nodeToString"
+      ></app-tree>
     </div>
   </div>
 </div>
