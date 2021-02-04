@@ -32,9 +32,8 @@ export class CollapseComponent implements OnInit {
   faChevronDown = faChevronDown;
   faChevronUp = faChevronUp;
 
-  closed = true;
-
   @Input() content!: TemplateRef<any>;
+  @Input() closed = true;
 
   constructor() {}
 

@@ -11,14 +11,14 @@
   </div>
 </div>
 <div>
-  <div>The Tree:</div>
+  <div>The tree:</div>
   <app-tree
     [tree]="tree$ | async"
     [currentTree]="currentValue$ | async"
   ></app-tree>
 </div>
 <div>
-  <div>The remaining stack</div>
+  <div>The remaining stack:</div>
   <app-stack [stack]="stack$ | async"></app-stack>
 </div>
 

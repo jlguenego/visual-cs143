@@ -1,7 +1,7 @@
-<div class="title">
+<div class="title" (click)="toggle()">
   <ng-content></ng-content>
-  <fa-icon *ngIf="closed" (click)="toggle()" [icon]="faChevronDown"></fa-icon>
-  <fa-icon *ngIf="!closed" (click)="toggle()" [icon]="faChevronUp"></fa-icon>
+  <fa-icon *ngIf="closed" [icon]="faChevronDown"></fa-icon>
+  <fa-icon *ngIf="!closed" [icon]="faChevronUp"></fa-icon>
 </div>
 <div *ngIf="!closed" class="content" [@inOutAnimation]>
   <ng-container *ngTemplateOutlet="content"></ng-container>

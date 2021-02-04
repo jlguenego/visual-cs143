@@ -4,7 +4,7 @@
     <span>Description</span>
   </app-collapse>
   <ng-template #description>
-    <article>
+    <article class="description">
       <h2>CS143 Source</h2>
       <p>
         <a [href]="cs143"> CS143 Top Down Parsing, part I. Slide 11. </a>
@@ -26,10 +26,32 @@
       </p>
     </article>
   </ng-template>
+  <app-collapse [content]="config">
+    <span>Config</span>
+  </app-collapse>
+  <ng-template #config>
+    <form [formGroup]="f">
+      <label>
+        <div>Delay</div>
+        <input
+          type="number"
+          formControlName="delay"
+          step="100"
+          min="0"
+          max="10000"
+        />
+      </label>
+    </form>
+  </ng-template>
 
-  <app-bfs-anim
-    rootValue="6"
-    [test]="test"
-    [getChildren]="getChildren"
-  ></app-bfs-anim>
+  <app-collapse [content]="anim" [closed]="false">
+    <span>Animation</span>
+  </app-collapse>
+  <ng-template #anim>
+    <app-bfs-anim
+      rootValue="6"
+      [test]="test"
+      [getChildren]="getChildren.bind(this)"
+    ></app-bfs-anim>
+  </ng-template>
 </main>
