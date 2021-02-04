@@ -5,7 +5,7 @@ import {
   BFSTreeAsyncTestValueFn,
   Tree,
 } from '@jlguenego/tree';
-import { BehaviorSubject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-bfs-anim',
@@ -17,21 +17,23 @@ export class BfsAnimComponent implements OnInit, OnDestroy {
   @Input() test!: BFSTreeAsyncTestValueFn<string>;
   @Input() getChildren!: BFSTreeAsyncGetChildrenFn<string>;
 
-  stack$ = new BehaviorSubject<{ node: string }[]>([]);
-  tree$ = new BehaviorSubject<Tree<string>>(new Tree<string>(''));
-  currentValue$ = new BehaviorSubject<Tree<string>>(new Tree<string>(''));
+  stack$ = new Subject<{ node: string }[]>();
+  tree$ = new Subject<Tree<string>>();
+  currentValue$ = new Subject<Tree<string>>();
 
   bfsTree!: BFSTreeAsync<string>;
 
   searching = false;
+  finished = false;
+  firstTime = true;
 
   constructor(private zone: NgZone) {}
 
-  ngOnInit(): void {
-    this.restart();
-  }
+  ngOnInit(): void {}
 
-  async restart(): Promise<void> {
+  async start(): Promise<void> {
+    this.firstTime = false;
+    this.finished = false;
     this.searching = true;
     if (this.bfsTree) {
       this.bfsTree.interrupt();
@@ -53,12 +55,21 @@ export class BfsAnimComponent implements OnInit, OnDestroy {
     });
     const result = await this.bfsTree.search();
     this.searching = false;
+    if (result !== undefined) {
+      this.finished = true;
+    }
     console.log('result: ', result);
   }
 
-  ngOnDestroy(): void {
+  stop(): void {
     if (this.bfsTree) {
       this.bfsTree.interrupt();
+      this.searching = false;
+      this.finished = false;
     }
+  }
+
+  ngOnDestroy(): void {
+    this.stop();
   }
 }

@@ -1,12 +1,14 @@
-<div class="testing">
-  <div [class.found]="!searching">
-    <span *ngIf="searching">Current value: </span>
-    <span *ngIf="!searching">Final value: </span>
-    <span class="current-value">{{ (currentValue$ | async)!.node }}</span>
-  </div>
-</div>
 <div class="restart">
-  <button (click)="restart()">Restart</button>
+  <button *ngIf="searching" (click)="stop()">Stop</button>
+  <button *ngIf="!searching && firstTime" (click)="start()">Start</button>
+  <button *ngIf="!searching && !firstTime" (click)="start()">Restart</button>
+</div>
+<div class="testing">
+  <div [class.found]="!finished">
+    <span *ngIf="!finished">Current value: </span>
+    <span *ngIf="finished">Final value: </span>
+    <span class="current-value">{{ (currentValue$ | async)?.node }}</span>
+  </div>
 </div>
 <div>
   <div>The Tree:</div>
@@ -19,3 +21,6 @@
   <div>The remaining stack</div>
   <app-stack [stack]="stack$ | async"></app-stack>
 </div>
+
+<div>finished = {{ finished }}</div>
+{{ searching }}

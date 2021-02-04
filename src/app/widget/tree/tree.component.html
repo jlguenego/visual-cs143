@@ -1,4 +1,4 @@
-<div class="tree">
+<div class="tree" *ngIf="tree">
   <span [class.current]="tree === currentTree">{{ tree?.node }}</span>
   <div class="children">
     <div *ngFor="let c of tree?.children">
