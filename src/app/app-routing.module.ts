@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: 'legal', component: LegalComponent },
   { path: 'menu', component: MenuComponent },
   { path: 'bfs', loadChildren: () => import('./bfs/bfs.module').then(m => m.BfsModule) },
+  { path: 'bfs1', loadChildren: () => import('./bfs1/bfs1.module').then(m => m.Bfs1Module) },
 ];
 
 @NgModule({
