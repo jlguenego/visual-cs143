@@ -7,7 +7,9 @@
   <div [class.found]="!finished">
     <span *ngIf="!finished">Current value: </span>
     <span *ngIf="finished">Final value: </span>
-    <span class="current-value">{{ (currentValue$ | async)?.node }}</span>
+    <span class="current-value">{{
+      nodeToString((currentValue$ | async)?.node)
+    }}</span>
   </div>
 </div>
 <div>
