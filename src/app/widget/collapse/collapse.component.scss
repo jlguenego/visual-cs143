@@ -9,9 +9,11 @@ div.title {
   justify-content: space-between;
   width: 100%;
   padding: 0.5em 1em;
-  border: 0.1em solid black;
+  border: 0.1em solid #ccc;
 }
 
 div.content {
+  background: #eee;
+  padding: 0.3em;
   overflow: hidden;
 }
