@@ -10,7 +10,7 @@ import {
   Sentence,
 } from '@jlguenego/syntax-analysis';
 import { interval, Subject } from 'rxjs';
-import { PartialParseTree } from '@jlguenego/syntax-analysis/build/src/PartialParseTree';
+import { PartialParseTree } from '@jlguenego/syntax-analysis';
 
 @Component({
   selector: 'app-bfs1-anim',
@@ -89,6 +89,6 @@ export class Bfs1AnimComponent implements OnInit, OnDestroy {
   }
 
   nodeToString(node: unknown): string {
-    return (node as PartialParseTree).sententialForm.toString();
+    return (node as PartialParseTree)?.sententialForm.toString();
   }
 }
