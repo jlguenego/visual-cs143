@@ -25,7 +25,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.2",
     "@jlguenego/syntax-analysis": "^1.3.1",
     "@jlguenego/tree": "^1.4.1",
-    "cigale": "file:../cigale",
+    "cigale": "^1.0.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
