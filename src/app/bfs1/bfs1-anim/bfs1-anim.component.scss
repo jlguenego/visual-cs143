@@ -4,7 +4,7 @@
   margin: 1em auto;
   display: grid;
   grid-template-columns: 50fr 50fr;
-  grid-template-rows: 3em 40em;
+  grid-template-rows: 3em 50em;
   grid-template-areas:
     "restart testing"
     "tree stack";
