@@ -1,26 +1,29 @@
-<div class="restart">
-  <button *ngIf="searching" (click)="stop()">Stop</button>
-  <button *ngIf="!searching && firstTime" (click)="start()">Start</button>
-  <button *ngIf="!searching && !firstTime" (click)="start()">Restart</button>
-</div>
-<div class="testing">
-  <div [class.found]="!finished">
-    <span *ngIf="!finished">Current value: </span>
-    <span *ngIf="finished">Final value: </span>
-    <span class="current-value">{{
-      nodeToString((currentValue$ | async)?.node)
-    }}</span>
+<div class="grid">
+  <div class="restart">
+    <button *ngIf="searching" (click)="stop()">Stop</button>
+    <button *ngIf="!searching && firstTime" (click)="start()">Start</button>
+    <button *ngIf="!searching && !firstTime" (click)="start()">Restart</button>
+  </div>
+  <div class="testing">
+    <div [class.found]="!finished">
+      <span *ngIf="!finished">Current value: </span>
+      <span *ngIf="finished">Final value: </span>
+      <span class="current-value">{{
+        nodeToString((currentValue$ | async)?.node)
+      }}</span>
+    </div>
+  </div>
+  <div>
+    <div>The tree:</div>
+    <app-tree
+      [tree]="tree$ | async"
+      [currentTree]="currentValue$ | async"
+      [nodeToString]="nodeToString"
+    ></app-tree>
+  </div>
+  <div>
+    <div>The remaining stack:</div>
+    <app-stack [stack]="stack$ | async"></app-stack>
   </div>
 </div>
-<div>
-  <div>The tree:</div>
-  <app-tree
-    [tree]="tree$ | async"
-    [currentTree]="currentValue$ | async"
-    [nodeToString]="nodeToString"
-  ></app-tree>
-</div>
-<div>
-  <div>The remaining stack:</div>
-  <app-stack [stack]="stack$ | async"></app-stack>
-</div>
+<app-yeah [visible]="finished"></app-yeah>

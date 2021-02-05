@@ -8,7 +8,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class Bfs1Component implements OnInit {
   f = new FormGroup({
-    delay: new FormControl(1000),
+    delay: new FormControl(10),
   });
 
   cs143 =
