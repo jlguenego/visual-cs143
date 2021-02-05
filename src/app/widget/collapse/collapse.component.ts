@@ -40,7 +40,6 @@ export class CollapseComponent implements OnInit {
   ngOnInit(): void {}
 
   toggle(): void {
-    console.log('toggle', this.content);
     this.closed = !this.closed;
   }
 }

@@ -24,9 +24,13 @@ const height = '2em';
 })
 export class StackComponent implements OnInit {
   @Input() stack!: unknown[] | null;
-  @Input() itemToString: ItemToStringFn = (item: unknown) =>
+  @Input() itemToString: ItemToStringFn = (item: unknown | null) => {
+    if (!item) {
+      return '';
+    }
+    return (item as { node: string }).node.toString();
     // tslint:disable-next-line: semicolon
-    (item as { node: string }).node.toString();
+  };
 
   constructor() {}
 

@@ -19,7 +19,6 @@ export class BfsComponent implements OnInit {
   async getChildren(str: string): Promise<string[]> {
     const n = +str;
     const delay = +this.f.value.delay;
-    console.log('delay: ', delay);
     await timer(delay).toPromise();
     return [n + 1, n + 2].map((x) => '' + x);
   }

@@ -44,7 +44,6 @@ export class BfsAnimComponent implements OnInit, OnDestroy {
       this.getChildren
     );
     this.bfsTree.subject.subscribe((info) => {
-      console.log('info: ', info);
       this.zone.run(() => {
         this.stack$.next(info.stack);
         this.tree$.next(info.tree);
@@ -58,7 +57,6 @@ export class BfsAnimComponent implements OnInit, OnDestroy {
     if (result !== undefined) {
       this.finished = true;
     }
-    console.log('result: ', result);
   }
 
   stop(): void {

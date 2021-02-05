@@ -1,13 +1,11 @@
 <div class="tree" *ngIf="tree">
-  <span [class.current]="tree === currentTree">{{
-    nodeToString(tree?.node)
-  }}</span>
+  <span [class.current]="tree === currentTree">{{ itemToString(tree) }}</span>
   <div class="children">
     <div *ngFor="let c of tree?.children">
       <app-tree
         [tree]="c"
         [currentTree]="currentTree"
-        [nodeToString]="nodeToString"
+        [itemToString]="itemToString"
       ></app-tree>
     </div>
   </div>

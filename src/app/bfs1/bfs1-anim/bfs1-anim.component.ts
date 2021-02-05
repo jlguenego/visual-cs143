@@ -59,7 +59,6 @@ export class Bfs1AnimComponent implements OnInit, OnDestroy {
     }));
     this.bfsTree = getBFSTreeAsync(sentence, cfg1, interval(this.delay));
     this.bfsTree.subject.subscribe((info) => {
-      console.log('info: ', info);
       this.zone.run(() => {
         this.stack$.next(info.stack);
         this.tree$.next(info.tree);
@@ -73,7 +72,6 @@ export class Bfs1AnimComponent implements OnInit, OnDestroy {
     if (result !== undefined) {
       this.finished = true;
     }
-    console.log('result: ', result);
   }
 
   stop(): void {
@@ -87,12 +85,10 @@ export class Bfs1AnimComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.stop();
   }
-
-  nodeToString(node: unknown): string {
-    return (node as PartialParseTree)?.sententialForm.toString();
-  }
-  itemToString(item: unknown): string {
-    console.log('item: ', item);
+  itemToString(item: unknown | null): string {
+    if (!item) {
+      return '';
+    }
     const it = item as Tree<PartialParseTree>;
     return it.node.sententialForm.toString();
   }

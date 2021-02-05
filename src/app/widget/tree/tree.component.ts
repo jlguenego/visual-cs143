@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Tree } from '@jlguenego/tree';
 
-type ToStringFn = (o: unknown) => string;
+type ItemToStringFn = (o: unknown) => string;
 
 @Component({
   selector: 'app-tree',
@@ -11,7 +11,9 @@ type ToStringFn = (o: unknown) => string;
 export class TreeComponent implements OnInit {
   @Input() tree!: Tree<unknown> | null;
   @Input() currentTree!: Tree<unknown> | null;
-  @Input() nodeToString: ToStringFn = (str: unknown) => str as string;
+  @Input() itemToString: ItemToStringFn = (item: unknown) =>
+    // tslint:disable-next-line: semicolon
+    (item as { node: string }).node.toString();
 
   constructor() {}
 

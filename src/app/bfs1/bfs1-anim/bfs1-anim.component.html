@@ -9,7 +9,7 @@
       <span class="label" *ngIf="!finished">Current: </span>
       <span class="label" *ngIf="finished">Final: </span>
       <span class="current-value">{{
-        nodeToString((currentValue$ | async)?.node)
+        itemToString(currentValue$ | async)
       }}</span>
     </div>
   </div>
@@ -18,7 +18,7 @@
     <app-tree
       [tree]="tree$ | async"
       [currentTree]="currentValue$ | async"
-      [nodeToString]="nodeToString"
+      [itemToString]="itemToString"
     ></app-tree>
   </div>
   <div>

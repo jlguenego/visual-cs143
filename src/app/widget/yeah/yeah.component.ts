@@ -13,7 +13,6 @@ export class YeahComponent implements OnInit {
   ngOnInit(): void {}
 
   clear(): void {
-    console.log('clear');
     this.visible = false;
   }
 }
