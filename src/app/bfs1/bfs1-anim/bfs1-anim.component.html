@@ -6,15 +6,15 @@
   </div>
   <div class="testing">
     <div [class.found]="!finished">
-      <span *ngIf="!finished">Current value: </span>
-      <span *ngIf="finished">Final value: </span>
+      <span class="label" *ngIf="!finished">Current: </span>
+      <span class="label" *ngIf="finished">Final: </span>
       <span class="current-value">{{
         nodeToString((currentValue$ | async)?.node)
       }}</span>
     </div>
   </div>
   <div>
-    <div>The tree:</div>
+    <div>tree:</div>
     <app-tree
       [tree]="tree$ | async"
       [currentTree]="currentValue$ | async"
@@ -22,7 +22,7 @@
     ></app-tree>
   </div>
   <div>
-    <div>The remaining stack:</div>
+    <div>stack:</div>
     <app-stack [stack]="stack$ | async"></app-stack>
   </div>
 </div>
