@@ -23,7 +23,10 @@
   </div>
   <div>
     <div>stack:</div>
-    <app-stack [stack]="stack$ | async"></app-stack>
+    <app-stack
+      [stack]="stack$ | async"
+      [itemToString]="itemToString"
+    ></app-stack>
   </div>
 </div>
 <app-yeah [visible]="finished"></app-yeah>

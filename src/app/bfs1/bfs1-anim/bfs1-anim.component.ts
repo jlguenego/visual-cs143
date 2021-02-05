@@ -20,7 +20,7 @@ import { PartialParseTree } from '@jlguenego/syntax-analysis';
 export class Bfs1AnimComponent implements OnInit, OnDestroy {
   @Input() delay = 1000;
 
-  stack$ = new Subject<{ node: string }[]>();
+  stack$ = new Subject<Tree<PartialParseTree>[]>();
   tree$ = new Subject<Tree<PartialParseTree>>();
   currentValue$ = new Subject<Tree<PartialParseTree>>();
 
@@ -61,9 +61,7 @@ export class Bfs1AnimComponent implements OnInit, OnDestroy {
     this.bfsTree.subject.subscribe((info) => {
       console.log('info: ', info);
       this.zone.run(() => {
-        this.stack$.next(
-          info.stack.map((tr) => ({ node: tr.node.sententialForm.toString() }))
-        );
+        this.stack$.next(info.stack);
         this.tree$.next(info.tree);
         if (info.currentValue !== undefined) {
           this.currentValue$.next(info.currentValue);
@@ -92,5 +90,10 @@ export class Bfs1AnimComponent implements OnInit, OnDestroy {
 
   nodeToString(node: unknown): string {
     return (node as PartialParseTree)?.sententialForm.toString();
+  }
+  itemToString(item: unknown): string {
+    console.log('item: ', item);
+    const it = item as Tree<PartialParseTree>;
+    return it.node.sententialForm.toString();
   }
 }
