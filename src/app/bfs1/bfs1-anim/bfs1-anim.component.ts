@@ -1,4 +1,4 @@
-import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { BFSTreeAsync, Tree } from '@jlguenego/tree';
 import {
   CFGSpec,
@@ -18,6 +18,8 @@ import { PartialParseTree } from '@jlguenego/syntax-analysis';
   styleUrls: ['./bfs1-anim.component.scss'],
 })
 export class Bfs1AnimComponent implements OnInit, OnDestroy {
+  @Input() delay = 1000;
+
   stack$ = new Subject<{ node: string }[]>();
   tree$ = new Subject<Tree<PartialParseTree>>();
   currentValue$ = new Subject<Tree<PartialParseTree>>();
@@ -55,7 +57,7 @@ export class Bfs1AnimComponent implements OnInit, OnDestroy {
     const sentence: Sentence = ['int', '+', 'int'].map((str) => ({
       name: str,
     }));
-    this.bfsTree = getBFSTreeAsync(sentence, cfg1, interval(1000));
+    this.bfsTree = getBFSTreeAsync(sentence, cfg1, interval(this.delay));
     this.bfsTree.subject.subscribe((info) => {
       console.log('info: ', info);
       this.zone.run(() => {
