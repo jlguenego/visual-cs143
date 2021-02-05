@@ -39,16 +39,16 @@ export class Bfs1AnimComponent implements OnInit, OnDestroy {
     if (this.bfsTree) {
       this.bfsTree.interrupt();
     }
-    const t = defineTerminalAlphabet(['+', 'int'] as const);
-    const nt = defineNonTerminalAlphabet(['S', 'E', 'F'] as const);
+    const t = defineTerminalAlphabet(['+', 'int', '(', ')'] as const);
+    const nt = defineNonTerminalAlphabet(['E', 'T'] as const);
 
     const spec: CFGSpecifications<typeof t, typeof nt> = {
-      startSymbol: 'S',
+      startSymbol: 'E',
       productions: [
-        { LHS: 'S', RHS: ['E'] },
-        { LHS: 'E', RHS: ['F'] },
-        { LHS: 'E', RHS: ['E', '+', 'F'] },
-        { LHS: 'F', RHS: ['int'] },
+        { LHS: 'E', RHS: ['T'] },
+        { LHS: 'E', RHS: ['T', '+', 'E'] },
+        { LHS: 'T', RHS: ['int'] },
+        { LHS: 'T', RHS: ['(', 'E', ')'] },
       ],
     };
     const cfg1 = new ContextFreeGrammar(spec as CFGSpec, t, nt);
