@@ -9,7 +9,7 @@ import {
   getBFSTreeAsync,
   Sentence,
 } from '@jlguenego/syntax-analysis';
-import { interval, Subject } from 'rxjs';
+import { BehaviorSubject, interval, Subject } from 'rxjs';
 import { PartialParseTree } from '@jlguenego/syntax-analysis';
 
 @Component({
@@ -23,6 +23,10 @@ export class Bfs1AnimComponent implements OnInit, OnDestroy {
   stack$ = new Subject<Tree<PartialParseTree>[]>();
   tree$ = new Subject<Tree<PartialParseTree>>();
   currentValue$ = new Subject<Tree<PartialParseTree>>();
+
+  testNbr$ = new BehaviorSubject(0);
+  maxStackSize$ = new BehaviorSubject(0);
+  treeSize$ = new BehaviorSubject(0);
 
   bfsTree!: BFSTreeAsync<PartialParseTree>;
 
@@ -65,6 +69,9 @@ export class Bfs1AnimComponent implements OnInit, OnDestroy {
         if (info.currentValue !== undefined) {
           this.currentValue$.next(info.currentValue);
         }
+        this.testNbr$.next(info.metrics.testNbr);
+        this.maxStackSize$.next(info.metrics.maxStackSize);
+        this.treeSize$.next(info.metrics.treeSize);
       });
     });
     const result = await this.bfsTree.search();

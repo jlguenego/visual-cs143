@@ -5,7 +5,7 @@ import {
   BFSTreeAsyncTestValueFn,
   Tree,
 } from '@jlguenego/tree';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-bfs-anim',
@@ -20,6 +20,10 @@ export class BfsAnimComponent implements OnInit, OnDestroy {
   stack$ = new Subject<{ node: string }[]>();
   tree$ = new Subject<Tree<string>>();
   currentValue$ = new Subject<Tree<string>>();
+
+  testNbr$ = new BehaviorSubject(0);
+  maxStackSize$ = new BehaviorSubject(0);
+  treeSize$ = new BehaviorSubject(0);
 
   bfsTree!: BFSTreeAsync<string>;
 
@@ -44,12 +48,16 @@ export class BfsAnimComponent implements OnInit, OnDestroy {
       this.getChildren
     );
     this.bfsTree.subject.subscribe((info) => {
+      console.log('info: ', info);
       this.zone.run(() => {
         this.stack$.next(info.stack);
         this.tree$.next(info.tree);
         if (info.currentValue !== undefined) {
           this.currentValue$.next(info.currentValue);
         }
+        this.testNbr$.next(info.metrics.testNbr);
+        this.maxStackSize$.next(info.metrics.maxStackSize);
+        this.treeSize$.next(info.metrics.treeSize);
       });
     });
     const result = await this.bfsTree.search();

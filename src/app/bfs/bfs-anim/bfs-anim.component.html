@@ -10,6 +10,20 @@
     <span class="current-value">{{ (currentValue$ | async)?.node }}</span>
   </div>
 </div>
+<div class="metrics">
+  <div class="treesize">
+    <div>Tree size</div>
+    <div>{{ treeSize$ | async }}</div>
+  </div>
+  <div class="maxstacksize">
+    <div>Max stack size</div>
+    <div>{{ maxStackSize$ | async }}</div>
+  </div>
+  <div class="testNbr">
+    <div>Test nbr</div>
+    <div>{{ testNbr$ | async }}</div>
+  </div>
+</div>
 <div>
   <div>The tree:</div>
   <app-tree

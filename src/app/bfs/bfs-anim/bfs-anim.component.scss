@@ -4,9 +4,10 @@
   margin: 1em auto;
   display: grid;
   grid-template-columns: 50fr 50fr;
-  grid-template-rows: 3em 40em;
+  grid-template-rows: 3em 3em 40em;
   grid-template-areas:
     "restart testing"
+    "metrics metrics"
     "tree stack";
   grid-gap: 0.5em 0.5em;
   div.testing {
@@ -29,6 +30,11 @@
   }
   div.restart {
     grid-area: restart;
+  }
+  div.metrics {
+    grid-area: metrics;
+    display: flex;
+    justify-content: space-between;
   }
   app-stack {
     grid-area: stack;
