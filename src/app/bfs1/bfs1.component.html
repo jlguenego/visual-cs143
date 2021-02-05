@@ -1,5 +1,5 @@
 <main>
-  <h1>Breadth First Search</h1>
+  <h1>Parse a sentence with naive BFS</h1>
   <app-collapse [content]="description">
     <span>Description</span>
   </app-collapse>
@@ -11,19 +11,19 @@
       </p>
       <h2>Description</h2>
       <p>
-        This animation shows the a very simple breadth first search in action.
+        This animation shows a sentence parsing with naive breadth-first search.
       </p>
-      <p>We consider a tree of integer values. The root value is 6.</p>
-      <p>We look in the tree for a node which value is > 10.</p>
-      <p>
-        For each tree node, we must be able to compute its children. In this
-        example, the getChildren function takes the node value integer N in
-        input and returns 2 childrens with value respective N+1, N+2.
-      </p>
-      <p>
-        In this example, when the first node which value strictly greater than
-        10 is met, the search stops, and the stack is cleaned.
-      </p>
+      <p>We have a context free grammar (CFG) defined as follows:</p>
+      <code>
+        <ul>
+          <li>E => T</li>
+          <li>E => T + E</li>
+          <li>T => int</li>
+          <li>T => (E)</li>
+        </ul>
+      </code>
+      <p>We parse the following sentence:</p>
+      <code>int + int</code>
     </article>
   </ng-template>
   <app-collapse [content]="config">
