@@ -16,6 +16,7 @@ const routes: Routes = [
     path: 'bfs1',
     loadChildren: () => import('./bfs1/bfs1.module').then((m) => m.Bfs1Module),
   },
+  { path: 'bfs2', loadChildren: () => import('./bfs2/bfs2.module').then(m => m.Bfs2Module) },
 ];
 
 @NgModule({
