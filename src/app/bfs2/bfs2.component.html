@@ -17,6 +17,11 @@
         sentence. If not, then we do not check the children, because none of
         them can be the sentence.
       </p>
+      <p>
+        Foreach sentential form, we also check that the sentential form length
+        is not longer than the sentence. But this is done only if there is no
+        rules with ε (empty rules).
+      </p>
       <h3>Grammar</h3>
       <p>We have a context free grammar (CFG) defined as follows:</p>
       <code>
@@ -54,6 +59,10 @@
     <span>Animation</span>
   </app-collapse>
   <ng-template #anim>
-    <app-tree-search [delay]="+f.value.delay"></app-tree-search>
+    <app-tree-search
+      [delay]="+f.value.delay"
+      [bfsTree]="bfsTree"
+      height="35em"
+    ></app-tree-search>
   </ng-template>
 </main>
