@@ -18,7 +18,7 @@ import { PartialParseTree } from '@jlguenego/syntax-analysis';
   styleUrls: ['./bfs1-anim.component.scss'],
 })
 export class Bfs1AnimComponent implements OnInit, OnDestroy {
-  @Input() delay = 1000;
+  @Input() delay = 50;
 
   stack$ = new Subject<Tree<PartialParseTree>[]>();
   tree$ = new Subject<Tree<PartialParseTree>>();

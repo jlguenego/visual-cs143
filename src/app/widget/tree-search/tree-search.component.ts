@@ -9,7 +9,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
   styleUrls: ['./tree-search.component.scss'],
 })
 export class TreeSearchComponent implements OnInit, OnDestroy {
-  @Input() delay = 1000;
+  @Input() delay = 50;
   @Input() bfsTree!: BFSTreeAsync<PartialParseTree> | null;
   @Input() height = '40em';
 

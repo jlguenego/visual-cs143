@@ -1,1 +1,68 @@
-<p>bfs3 works!</p>
+<main>
+  <h1>Parse a sentence with BFS with prefix checking</h1>
+  <app-collapse [content]="description">
+    <span>Description</span>
+  </app-collapse>
+  <ng-template #description>
+    <article class="description">
+      <h2>CS143 Source</h2>
+      <p>
+        <a [href]="cs143"> CS143 Top Down Parsing, part I. Slide 49. </a>
+      </p>
+      <h2>Description</h2>
+      <p>This animation shows a sentence parsing with breadth-first search.</p>
+      <h3>Check sentential form prefix</h3>
+      <p>
+        Foreach sentential form, we check that it has the same prefix than the
+        sentence. If not, then we do not check the children, because none of
+        them can be the sentence.
+      </p>
+      <p>
+        Foreach sentential form, we also check that the sentential form length
+        is not longer than the sentence. But this is done only if there is no
+        rules with ε (empty rules).
+      </p>
+      <h3>Grammar</h3>
+      <p>We have a context free grammar (CFG) defined as follows:</p>
+      <code>
+        <ul>
+          <li>E => T</li>
+          <li>E => T + E</li>
+          <li>T => int</li>
+          <li>T => (E)</li>
+        </ul>
+      </code>
+      <h3>Sentence</h3>
+      <p>We parse the following sentence:</p>
+      <code>int + int</code>
+    </article>
+  </ng-template>
+  <app-collapse [content]="config">
+    <span>Config</span>
+  </app-collapse>
+  <ng-template #config>
+    <form [formGroup]="f">
+      <label>
+        <div>Delay</div>
+        <input
+          type="number"
+          formControlName="delay"
+          step="100"
+          min="0"
+          max="10000"
+        />
+      </label>
+    </form>
+  </ng-template>
+
+  <app-collapse [content]="anim" [closed]="false">
+    <span>Animation</span>
+  </app-collapse>
+  <ng-template #anim>
+    <app-tree-search
+      [delay]="+f.value.delay"
+      [bfsTree]="bfsTree"
+      height="35em"
+    ></app-tree-search>
+  </ng-template>
+</main>

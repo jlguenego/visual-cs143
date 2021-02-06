@@ -9,7 +9,7 @@ import { timer } from 'rxjs';
 })
 export class BfsComponent implements OnInit {
   f = new FormGroup({
-    delay: new FormControl(1000),
+    delay: new FormControl(50),
   });
 
   cs143 =
