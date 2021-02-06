@@ -1,7 +1,8 @@
 import { Component, Input, NgZone, OnDestroy, OnInit } from '@angular/core';
-import { PartialParseTree } from '@jlguenego/syntax-analysis';
 import { BFSTreeAsync, Tree } from '@jlguenego/tree';
 import { BehaviorSubject, Subject } from 'rxjs';
+
+export type ItemToStringFn = (item: unknown | null) => string;
 
 @Component({
   selector: 'app-tree-search',
@@ -10,12 +11,13 @@ import { BehaviorSubject, Subject } from 'rxjs';
 })
 export class TreeSearchComponent implements OnInit, OnDestroy {
   @Input() delay = 50;
-  @Input() bfsTree!: BFSTreeAsync<PartialParseTree> | null;
+  @Input() bfsTree!: BFSTreeAsync<unknown> | null;
   @Input() height = '40em';
+  @Input() itemToString!: ItemToStringFn;
 
-  stack$ = new Subject<Tree<PartialParseTree>[]>();
-  tree$ = new Subject<Tree<PartialParseTree>>();
-  currentValue$ = new Subject<Tree<PartialParseTree>>();
+  stack$ = new Subject<Tree<unknown>[]>();
+  tree$ = new Subject<Tree<unknown>>();
+  currentValue$ = new Subject<Tree<unknown>>();
 
   testNbr$ = new BehaviorSubject(0);
   maxStackSize$ = new BehaviorSubject(0);
@@ -25,7 +27,14 @@ export class TreeSearchComponent implements OnInit, OnDestroy {
   finished = false;
   firstTime = true;
 
-  constructor(private zone: NgZone) {}
+  constructor(private zone: NgZone) {
+    this.itemToString = (item: unknown | null): string => {
+      if (!item) {
+        return '';
+      }
+      return (item as { node: string }).node ?? '';
+    };
+  }
 
   ngOnInit(): void {}
 
@@ -67,12 +76,5 @@ export class TreeSearchComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.stop();
-  }
-  itemToString(item: unknown | null): string {
-    if (!item) {
-      return '';
-    }
-    const it = item as Tree<PartialParseTree>;
-    return it.node.sententialForm.toString();
   }
 }

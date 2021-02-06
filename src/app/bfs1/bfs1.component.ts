@@ -10,7 +10,7 @@ import {
   Sentence,
   getBFS1TreeAsync,
 } from '@jlguenego/syntax-analysis';
-import { BFSTreeAsync } from '@jlguenego/tree';
+import { BFSTreeAsync, Tree } from '@jlguenego/tree';
 import { interval } from 'rxjs';
 
 @Component({
@@ -26,7 +26,7 @@ export class Bfs1Component implements OnInit {
   cs143 =
     'https://web.stanford.edu/class/archive/cs/cs143/cs143.1128/lectures/03/Slides03.pdf';
 
-  bfsTree!: BFSTreeAsync<PartialParseTree>;
+  bfsTree!: BFSTreeAsync<unknown>;
 
   constructor() {
     const t = defineTerminalAlphabet(['+', 'int', '(', ')'] as const);
@@ -49,8 +49,16 @@ export class Bfs1Component implements OnInit {
       sentence,
       cfg1,
       interval(+this.f.value.delay)
-    );
+    ) as BFSTreeAsync<unknown>;
   }
 
   ngOnInit(): void {}
+
+  itemToString(item: unknown | null): string {
+    if (!item) {
+      return '';
+    }
+    const it = item as Tree<PartialParseTree>;
+    return it.node.sententialForm.toString();
+  }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { BFSTreeAsync } from '@jlguenego/tree';
 import { timer } from 'rxjs';
 
 @Component({
@@ -15,15 +16,22 @@ export class BfsComponent implements OnInit {
   cs143 =
     'https://web.stanford.edu/class/archive/cs/cs143/cs143.1128/lectures/03/Slides03.pdf';
 
-  test = async (n: string) => +n > 10;
-  async getChildren(str: string): Promise<string[]> {
-    const n = +str;
-    const delay = +this.f.value.delay;
-    await timer(delay).toPromise();
-    return [n + 1, n + 2].map((x) => '' + x);
-  }
+  bfsTree: BFSTreeAsync<unknown>;
 
-  constructor() {}
+  constructor() {
+    const test = async (n: string) => +n > 10;
+    const getChildren = async (str: string): Promise<string[]> => {
+      const n = +str;
+      const delay = +this.f.value.delay;
+      await timer(delay).toPromise();
+      return [n + 1, n + 2].map((x) => '' + x);
+    };
+    this.bfsTree = new BFSTreeAsync(
+      '6',
+      test,
+      getChildren
+    ) as BFSTreeAsync<unknown>;
+  }
 
   ngOnInit(): void {}
 }
