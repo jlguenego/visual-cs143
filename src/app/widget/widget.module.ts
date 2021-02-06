@@ -7,6 +7,7 @@ import { StackComponent } from './stack/stack.component';
 import { CollapseComponent } from './collapse/collapse.component';
 import { YeahComponent } from './yeah/yeah.component';
 import { PreviousNextComponent } from './previous-next/previous-next.component';
+import { TreeSearchComponent } from './tree-search/tree-search.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { PreviousNextComponent } from './previous-next/previous-next.component';
     CollapseComponent,
     YeahComponent,
     PreviousNextComponent,
+    TreeSearchComponent,
   ],
   imports: [CommonModule, FontAwesomeModule, RouterModule],
   exports: [
@@ -23,6 +25,7 @@ import { PreviousNextComponent } from './previous-next/previous-next.component';
     CollapseComponent,
     YeahComponent,
     PreviousNextComponent,
+    TreeSearchComponent,
   ],
 })
 export class WidgetModule {}
