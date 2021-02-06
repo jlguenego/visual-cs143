@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -13,13 +13,7 @@ export class AppComponent {
   faGithub = faGithub;
   showPrevNext = true;
 
-  constructor(private router: Router) {
-    this.router.events.subscribe((event) => {
-      if (!(event instanceof NavigationEnd)) {
-        return;
-      }
-      this.showPrevNext = event.url !== '/';
-      console.log(event);
-    });
-  }
+  config = this.router.config.slice(3);
+
+  constructor(private router: Router) {}
 }

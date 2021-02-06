@@ -1,8 +1,9 @@
-<nav class="maxwidth">
-  <button (click)="previous()" [disabled]="prevPath === undefined">
-    <fa-icon [icon]="faChevronLeft"></fa-icon>&nbsp;Previous
-  </button>
-  <button (click)="next()" [disabled]="nextPath === undefined">
-    Next&nbsp;<fa-icon [icon]="faChevronRight"></fa-icon>
-  </button>
+<nav class="maxwidth" *ngIf="visible">
+  <a [routerLink]="prevPath">
+    <button><fa-icon [icon]="faChevronLeft"></fa-icon>&nbsp;Previous</button>
+  </a>
+
+  <a [routerLink]="nextPath">
+    <button>Next&nbsp;<fa-icon [icon]="faChevronRight"></fa-icon></button>
+  </a>
 </nav>
