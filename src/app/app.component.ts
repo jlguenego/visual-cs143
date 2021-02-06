@@ -10,4 +10,5 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 export class AppComponent {
   faBars = faBars;
   faGithub = faGithub;
+  showPrevNext = true;
 }

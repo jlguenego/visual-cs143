@@ -1,3 +1,4 @@
+import { WidgetModule } from './widget/widget.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,6 +17,7 @@ import { MenuComponent } from './routes/menu/menu.component';
     BrowserAnimationsModule,
     AppRoutingModule,
     FontAwesomeModule,
+    WidgetModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
