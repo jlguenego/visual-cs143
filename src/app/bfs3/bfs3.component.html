@@ -1,5 +1,5 @@
 <main>
-  <h1>Parse a sentence with BFS with prefix checking</h1>
+  <h1>Parse a sentence with BFS with leftmost derivation</h1>
   <app-collapse [content]="description">
     <span>Description</span>
   </app-collapse>
@@ -7,7 +7,7 @@
     <article class="description">
       <h2>CS143 Source</h2>
       <p>
-        <a [href]="cs143"> CS143 Top Down Parsing, part I. Slide 49. </a>
+        <a [href]="cs143"> CS143 Top Down Parsing, part I. Slide 51. </a>
       </p>
       <h2>Description</h2>
       <p>This animation shows a sentence parsing with breadth-first search.</p>
@@ -21,6 +21,13 @@
         Foreach sentential form, we also check that the sentential form length
         is not longer than the sentence. But this is done only if there is no
         rules with ε (empty rules).
+      </p>
+      <h3>Leftmost derivation</h3>
+      <p>
+        If we find the leftmost derivation, this is fine. Because all we want is
+        the parse tree, whatever is the derivation. So to find the leftmost
+        derivation, we just need to expand the first nonterminal met in the
+        sentential form, and not all.
       </p>
       <h3>Grammar</h3>
       <p>We have a context free grammar (CFG) defined as follows:</p>
