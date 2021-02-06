@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   faChevronLeft,
   faChevronRight,
@@ -12,7 +13,11 @@ import {
 export class PreviousNextComponent implements OnInit {
   faChevronRight = faChevronRight;
   faChevronLeft = faChevronLeft;
-  constructor() {}
+
+  prevPath!: string;
+  nextPath!: string;
+
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
 

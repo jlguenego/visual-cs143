@@ -1,8 +1,8 @@
 <nav class="maxwidth">
-  <button (click)="previous()">
+  <button (click)="previous()" [disabled]="prevPath === undefined">
     <fa-icon [icon]="faChevronLeft"></fa-icon>&nbsp;Previous
   </button>
-  <button (click)="next()">
+  <button (click)="next()" [disabled]="nextPath === undefined">
     Next&nbsp;<fa-icon [icon]="faChevronRight"></fa-icon>
   </button>
 </nav>
