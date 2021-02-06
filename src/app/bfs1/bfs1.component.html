@@ -48,6 +48,10 @@
     <span>Animation</span>
   </app-collapse>
   <ng-template #anim>
-    <app-bfs1-anim [delay]="+f.value.delay"></app-bfs1-anim>
+    <app-tree-search
+      [delay]="+f.value.delay"
+      [bfsTree]="bfsTree"
+      height="170em"
+    ></app-tree-search>
   </ng-template>
 </main>
