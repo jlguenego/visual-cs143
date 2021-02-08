@@ -6,12 +6,15 @@ import {
   ContextFreeGrammar,
   defineNonTerminalAlphabet,
   defineTerminalAlphabet,
-  getDFS1TreeAsync,
+  dfs1GetChildren,
+  ParseSymbol,
   PartialParseTree,
   Sentence,
+  testFnAsync,
 } from '@jlguenego/syntax-analysis';
 import { DFSTreeAsync, Tree } from '@jlguenego/tree';
 import { interval } from 'rxjs';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dfs1',
@@ -35,8 +38,8 @@ export class Dfs1Component implements OnInit {
     const spec: CFGSpecifications<typeof t, typeof nt> = {
       startSymbol: 'E',
       productions: [
-        { LHS: 'E', RHS: ['T'] },
         { LHS: 'E', RHS: ['T', '+', 'E'] },
+        { LHS: 'E', RHS: ['T'] },
         { LHS: 'T', RHS: ['int'] },
         { LHS: 'T', RHS: ['(', 'E', ')'] },
       ],
@@ -45,10 +48,16 @@ export class Dfs1Component implements OnInit {
     const sentence: Sentence = ['int', '+', 'int'].map((str) => ({
       name: str,
     }));
-    this.dfsTree = getDFS1TreeAsync(
-      sentence,
-      cfg1,
-      interval(+this.f.value.delay)
+
+    this.dfsTree = new DFSTreeAsync<PartialParseTree>(
+      new PartialParseTree(new Tree<ParseSymbol>(cfg1.startSymbol)),
+      testFnAsync(sentence),
+      async (ppt: PartialParseTree) => {
+        await interval(+this.f.value.delay)
+          .pipe(first())
+          .toPromise();
+        return dfs1GetChildren(sentence, cfg1)(ppt);
+      }
     ) as DFSTreeAsync<unknown>;
   }
 
