@@ -14,12 +14,15 @@
       <p>We have a context free grammar (CFG) defined as follows:</p>
       <code>
         <ul>
-          <li>E => T</li>
           <li>E => T + E</li>
+          <li>E => T</li>
           <li>T => int</li>
           <li>T => (E)</li>
         </ul>
       </code>
+      <p>
+        Note that we have switched the first two rules to show the worst case.
+      </p>
       <p>We parse the following sentence:</p>
       <code>int + int</code>
     </article>
