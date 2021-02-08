@@ -18,6 +18,7 @@ const routes: Routes = [
   },
   { path: 'bfs2', loadChildren: () => import('./bfs2/bfs2.module').then(m => m.Bfs2Module) },
   { path: 'bfs3', loadChildren: () => import('./bfs3/bfs3.module').then(m => m.Bfs3Module) },
+  { path: 'dfs1', loadChildren: () => import('./dfs1/dfs1.module').then(m => m.Dfs1Module) },
 ];
 
 @NgModule({
