@@ -13,8 +13,7 @@ import {
   testFnAsync,
 } from '@jlguenego/syntax-analysis';
 import { DFSTreeAsync, Tree } from '@jlguenego/tree';
-import { interval } from 'rxjs';
-import { first } from 'rxjs/operators';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-dfs1',
@@ -53,9 +52,7 @@ export class Dfs1Component implements OnInit {
       new PartialParseTree(new Tree<ParseSymbol>(cfg1.startSymbol)),
       testFnAsync(sentence),
       async (ppt: PartialParseTree) => {
-        await interval(+this.f.value.delay)
-          .pipe(first())
-          .toPromise();
+        await timer(+this.f.value.delay).toPromise();
         return dfs1GetChildren(sentence, cfg1)(ppt);
       }
     ) as DFSTreeAsync<unknown>;
