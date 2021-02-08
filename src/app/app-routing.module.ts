@@ -16,9 +16,25 @@ const routes: Routes = [
     path: 'bfs1',
     loadChildren: () => import('./bfs1/bfs1.module').then((m) => m.Bfs1Module),
   },
-  { path: 'bfs2', loadChildren: () => import('./bfs2/bfs2.module').then(m => m.Bfs2Module) },
-  { path: 'bfs3', loadChildren: () => import('./bfs3/bfs3.module').then(m => m.Bfs3Module) },
-  { path: 'dfs1', loadChildren: () => import('./dfs1/dfs1.module').then(m => m.Dfs1Module) },
+  {
+    path: 'bfs2',
+    loadChildren: () => import('./bfs2/bfs2.module').then((m) => m.Bfs2Module),
+  },
+  {
+    path: 'bfs3',
+    loadChildren: () => import('./bfs3/bfs3.module').then((m) => m.Bfs3Module),
+  },
+  {
+    path: 'bfs-perf-issue',
+    loadChildren: () =>
+      import('./bfs-perf-issue/bfs-perf-issue.module').then(
+        (m) => m.BfsPerfIssueModule
+      ),
+  },
+  {
+    path: 'dfs1',
+    loadChildren: () => import('./dfs1/dfs1.module').then((m) => m.Dfs1Module),
+  },
 ];
 
 @NgModule({
