@@ -60,12 +60,4 @@ export class Dfs1Component implements OnInit {
   }
 
   ngOnInit(): void {}
-
-  itemToString(item: unknown | null): string {
-    if (!item) {
-      return '';
-    }
-    const it = item as Tree<PartialParseTree>;
-    return it.node.sententialForm.toString();
-  }
 }

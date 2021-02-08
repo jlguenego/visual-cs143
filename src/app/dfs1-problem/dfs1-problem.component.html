@@ -1,1 +1,54 @@
-<p>dfs1-problem works!</p>
+<main>
+  <h1>Problem with DFS</h1>
+  <app-collapse [content]="description">
+    <span>Description</span>
+  </app-collapse>
+  <ng-template #description>
+    <article class="description">
+      <h2>CS143 Source</h2>
+      <p>
+        <a [href]="cs143"> CS143 Top Down Parsing, part I. Slide 122. </a>
+      </p>
+      <h2>Description</h2>
+      <p>Left recursion is a problem with DFS.</p>
+      <p>We have a context free grammar (CFG) defined as follows:</p>
+      <code>
+        <ul>
+          <li>A => Aa</li>
+          <li>A => c</li>
+        </ul>
+      </code>
+      <p>We parse this very simple sentence (just one terminal):</p>
+      <code>c</code>
+    </article>
+  </ng-template>
+  <app-collapse [content]="config">
+    <span>Config</span>
+  </app-collapse>
+  <ng-template #config>
+    <form [formGroup]="f">
+      <label>
+        <div>Delay</div>
+        <input
+          type="number"
+          formControlName="delay"
+          step="100"
+          min="0"
+          max="10000"
+        />
+      </label>
+    </form>
+  </ng-template>
+
+  <app-collapse [content]="anim" [closed]="false">
+    <span>Animation</span>
+  </app-collapse>
+  <ng-template #anim>
+    <app-tree-search
+      [delay]="+f.value.delay"
+      [searchTree]="dfsTree"
+      height="20em"
+      [itemToString]="utils.itemToString"
+    ></app-tree-search>
+  </ng-template>
+</main>
