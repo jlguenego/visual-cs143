@@ -1,5 +1,5 @@
 import { Component, Input, NgZone, OnDestroy, OnInit } from '@angular/core';
-import { BFSTreeAsync, Tree } from '@jlguenego/tree';
+import { BFSTreeAsync, SearchTreeAsync, Tree } from '@jlguenego/tree';
 import { BehaviorSubject, Subject } from 'rxjs';
 
 export type ItemToStringFn = (item: unknown | null) => string;
@@ -11,7 +11,7 @@ export type ItemToStringFn = (item: unknown | null) => string;
 })
 export class TreeSearchComponent implements OnInit, OnDestroy {
   @Input() delay = 50;
-  @Input() bfsTree = new BFSTreeAsync<unknown>(
+  @Input() searchTree: SearchTreeAsync<unknown> = new BFSTreeAsync<unknown>(
     0,
     async () => true,
     async () => []
@@ -40,7 +40,7 @@ export class TreeSearchComponent implements OnInit, OnDestroy {
   @Input() itemToString: ItemToStringFn = () => '';
 
   ngOnInit(): void {
-    this.bfsTree.subject.subscribe((info) => {
+    this.searchTree.subject.subscribe((info) => {
       this.zone.run(() => {
         this.stack$.next(info.stack);
         this.tree$.next(info.tree);
@@ -53,15 +53,15 @@ export class TreeSearchComponent implements OnInit, OnDestroy {
   }
 
   async start(): Promise<void> {
-    if (this.bfsTree.found) {
-      this.bfsTree.reset();
+    if (this.searchTree.found) {
+      this.searchTree.reset();
     }
-    await this.bfsTree.search();
+    await this.searchTree.search();
     this.firstTime = false;
   }
 
   stop(): void {
-    this.bfsTree.interrupt();
+    this.searchTree.interrupt();
   }
 
   ngOnDestroy(): void {

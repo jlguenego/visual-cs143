@@ -1,1 +1,56 @@
-<p>dfs1 works!</p>
+<main>
+  <h1>Parse a sentence with DFS</h1>
+  <app-collapse [content]="description">
+    <span>Description</span>
+  </app-collapse>
+  <ng-template #description>
+    <article class="description">
+      <h2>CS143 Source</h2>
+      <p>
+        <a [href]="cs143"> CS143 Top Down Parsing, part I. Slide 104. </a>
+      </p>
+      <h2>Description</h2>
+      <p>This animation shows a sentence parsing with depth-first search.</p>
+      <p>We have a context free grammar (CFG) defined as follows:</p>
+      <code>
+        <ul>
+          <li>E => T</li>
+          <li>E => T + E</li>
+          <li>T => int</li>
+          <li>T => (E)</li>
+        </ul>
+      </code>
+      <p>We parse the following sentence:</p>
+      <code>int + int</code>
+    </article>
+  </ng-template>
+  <app-collapse [content]="config">
+    <span>Config</span>
+  </app-collapse>
+  <ng-template #config>
+    <form [formGroup]="f">
+      <label>
+        <div>Delay</div>
+        <input
+          type="number"
+          formControlName="delay"
+          step="100"
+          min="0"
+          max="10000"
+        />
+      </label>
+    </form>
+  </ng-template>
+
+  <app-collapse [content]="anim" [closed]="false">
+    <span>Animation</span>
+  </app-collapse>
+  <ng-template #anim>
+    <app-tree-search
+      [delay]="+f.value.delay"
+      [searchTree]="dfsTree"
+      height="170em"
+      [itemToString]="itemToString"
+    ></app-tree-search>
+  </ng-template>
+</main>
