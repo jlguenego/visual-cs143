@@ -1,3 +1,4 @@
+import { UtilsService } from './../services/utils.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import {
@@ -7,10 +8,9 @@ import {
   defineNonTerminalAlphabet,
   defineTerminalAlphabet,
   getBFS2TreeAsync,
-  PartialParseTree,
   Sentence,
 } from '@jlguenego/syntax-analysis';
-import { BFSTreeAsync, Tree } from '@jlguenego/tree';
+import { BFSTreeAsync } from '@jlguenego/tree';
 import { interval } from 'rxjs';
 
 @Component({
@@ -28,7 +28,7 @@ export class Bfs2Component implements OnInit {
 
   bfsTree!: BFSTreeAsync<unknown>;
 
-  constructor() {
+  constructor(public utils: UtilsService) {
     const t = defineTerminalAlphabet(['+', 'int', '(', ')'] as const);
     const nt = defineNonTerminalAlphabet(['E', 'T'] as const);
 
@@ -53,12 +53,4 @@ export class Bfs2Component implements OnInit {
   }
 
   ngOnInit(): void {}
-
-  itemToString(item: unknown | null): string {
-    if (!item) {
-      return '';
-    }
-    const it = item as Tree<PartialParseTree>;
-    return it.node.sententialForm.toString();
-  }
 }

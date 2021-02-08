@@ -1,3 +1,4 @@
+import { UtilsService } from './../services/utils.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import {
@@ -30,7 +31,7 @@ export class Dfs1Component implements OnInit {
 
   dfsTree!: DFSTreeAsync<unknown>;
 
-  constructor() {
+  constructor(public utils: UtilsService) {
     const t = defineTerminalAlphabet(['+', 'int', '(', ')'] as const);
     const nt = defineNonTerminalAlphabet(['E', 'T'] as const);
 

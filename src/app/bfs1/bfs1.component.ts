@@ -2,7 +2,6 @@ import { UtilsService } from './../services/utils.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import {
-  PartialParseTree,
   defineTerminalAlphabet,
   defineNonTerminalAlphabet,
   CFGSpecifications,
@@ -11,7 +10,7 @@ import {
   Sentence,
   getBFS1TreeAsync,
 } from '@jlguenego/syntax-analysis';
-import { BFSTreeAsync, Tree } from '@jlguenego/tree';
+import { BFSTreeAsync } from '@jlguenego/tree';
 import { interval } from 'rxjs';
 
 @Component({

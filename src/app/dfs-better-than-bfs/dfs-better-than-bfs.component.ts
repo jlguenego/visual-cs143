@@ -1,3 +1,4 @@
+import { UtilsService } from './../services/utils.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import {
@@ -7,14 +8,13 @@ import {
   ContextFreeGrammar,
   CFGSpec,
   Sentence,
-  getBFS1TreeAsync,
   PartialParseTree,
   dfs1GetChildren,
   ParseSymbol,
   testFnAsync,
 } from '@jlguenego/syntax-analysis';
-import { BFSTreeAsync, DFSTreeAsync, Tree } from '@jlguenego/tree';
-import { interval, timer } from 'rxjs';
+import { DFSTreeAsync, Tree } from '@jlguenego/tree';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-dfs-better-than-bfs',
@@ -31,7 +31,7 @@ export class DfsBetterThanBfsComponent implements OnInit {
 
   dfsTree!: DFSTreeAsync<unknown>;
 
-  constructor() {
+  constructor(public utils: UtilsService) {
     const t = defineTerminalAlphabet(['a', 'b', 'c'] as const);
     const nt = defineNonTerminalAlphabet(['A'] as const);
 
@@ -58,12 +58,4 @@ export class DfsBetterThanBfsComponent implements OnInit {
   }
 
   ngOnInit(): void {}
-
-  itemToString(item: unknown | null): string {
-    if (!item) {
-      return '';
-    }
-    const it = item as Tree<PartialParseTree>;
-    return it.node.sententialForm.toString();
-  }
 }
