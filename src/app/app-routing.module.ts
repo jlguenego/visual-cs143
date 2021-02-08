@@ -36,6 +36,7 @@ const routes: Routes = [
     loadChildren: () => import('./dfs1/dfs1.module').then((m) => m.Dfs1Module),
   },
   { path: 'dfs-better-than-bfs', loadChildren: () => import('./dfs-better-than-bfs/dfs-better-than-bfs.module').then(m => m.DfsBetterThanBfsModule) },
+  { path: 'dfs1-problem', loadChildren: () => import('./dfs1-problem/dfs1-problem.module').then(m => m.Dfs1ProblemModule) },
 ];
 
 @NgModule({
