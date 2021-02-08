@@ -1,16 +1,18 @@
 div.grid {
-  width: 100%;
-  max-width: 25em;
+  width: 25em;
+  max-width: 100%;
   margin: 1em auto;
   display: grid;
-  grid-template-columns: 50fr 50fr;
+  overflow: hidden;
+  grid-template-columns: repeat(2, calc(50% - 0.25em));
+  // grid-template-columns: 1fr 1fr;
   // grid-template-rows: 3em 3em 40em;
   grid-template-areas:
     "restart testing"
     "metrics metrics"
     "tree stack";
   grid-gap: 0.5em 0.5em;
-  div.testing {
+  > div.testing {
     grid-area: testing;
     div {
       border: 0.1em solid #333;
@@ -32,20 +34,21 @@ div.grid {
       color: white;
     }
   }
-  div.restart {
+  > div.restart {
     grid-area: restart;
   }
-  div.metrics {
+  > div.metrics {
     grid-area: metrics;
     display: flex;
     justify-content: space-between;
+    overflow: hidden;
   }
   app-stack {
     grid-area: stack;
     overflow: hidden;
   }
 
-  app-tree {
+  > app-tree {
     grid-area: tree;
     overflow: hidden;
   }
