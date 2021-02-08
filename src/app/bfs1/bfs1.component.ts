@@ -1,3 +1,4 @@
+import { UtilsService } from './../services/utils.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import {
@@ -28,7 +29,7 @@ export class Bfs1Component implements OnInit {
 
   bfsTree!: BFSTreeAsync<unknown>;
 
-  constructor() {
+  constructor(public utils: UtilsService) {
     const t = defineTerminalAlphabet(['+', 'int', '(', ')'] as const);
     const nt = defineNonTerminalAlphabet(['E', 'T'] as const);
 
@@ -53,12 +54,4 @@ export class Bfs1Component implements OnInit {
   }
 
   ngOnInit(): void {}
-
-  itemToString(item: unknown | null): string {
-    if (!item) {
-      return '';
-    }
-    const it = item as Tree<PartialParseTree>;
-    return it.node.sententialForm.toString();
-  }
 }
