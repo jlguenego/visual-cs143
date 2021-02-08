@@ -33,17 +33,20 @@ export class Dfs1ProblemComponent implements OnInit {
 
   constructor(public utils: UtilsService) {
     const t = defineTerminalAlphabet(['a', 'c'] as const);
-    const nt = defineNonTerminalAlphabet(['A'] as const);
+    const nt = defineNonTerminalAlphabet(['A', 'B'] as const);
 
     const spec: CFGSpecifications<typeof t, typeof nt> = {
       startSymbol: 'A',
       productions: [
-        { LHS: 'A', RHS: ['A', 'a'] },
+        { LHS: 'A', RHS: [] },
         { LHS: 'A', RHS: ['c'] },
+        { LHS: 'A', RHS: ['A', 'a'] },
       ],
     };
     const cfg1 = new ContextFreeGrammar(spec as CFGSpec, t, nt);
-    const sentence: Sentence = ['int', '+', 'int'].map((str) => ({
+    const emptyProd = cfg1.hasEmptyProduction();
+    console.log('emptyProd: ', emptyProd);
+    const sentence: Sentence = ['c'].map((str) => ({
       name: str,
     }));
 

@@ -16,11 +16,20 @@
         <ul>
           <li>A => Aa</li>
           <li>A => c</li>
+          <li>A => ε</li>
         </ul>
       </code>
       <p>We parse this very simple sentence (just one terminal):</p>
       <code>c</code>
     </article>
+    <p>
+      <strong>Note: </strong>our algorithm has a small optimization: if there is
+      no empty rules, then we can check the length of the sentential form: it
+      cannot be greater than the sentence. That is why we added the empty rule
+      with the ε notation.
+    </p>
+
+    <p><strong>Warning!!! </strong> This parser never stops!</p>
   </ng-template>
   <app-collapse [content]="config">
     <span>Config</span>
