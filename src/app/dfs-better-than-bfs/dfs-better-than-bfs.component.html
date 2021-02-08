@@ -1,1 +1,58 @@
-<p>dfs-better-than-bfs works!</p>
+<main>
+  <h1>DFS can be better than BFS</h1>
+  <app-collapse [content]="description">
+    <span>Description</span>
+  </app-collapse>
+  <ng-template #description>
+    <article class="description">
+      <h2>CS143 Source</h2>
+      <p>
+        <a [href]="cs143"> CS143 Top Down Parsing, part I. Slide 82. </a>
+      </p>
+      <h2>Description</h2>
+      <p>Example of nightmare grammar for BFS but partially solved for DFS:</p>
+      <code>
+        <ul>
+          <li>A => Aa</li>
+          <li>A => Ab</li>
+          <li>A => c</li>
+        </ul>
+      </code>
+      <p>We parse the following sentence (c followed by 8 a):</p>
+      <code>caaaaaaaa</code>
+      <p>
+        The maximum stack size is considerably reduced, but the number of test
+        is about the same.
+      </p>
+    </article>
+  </ng-template>
+  <app-collapse [content]="config">
+    <span>Config</span>
+  </app-collapse>
+  <ng-template #config>
+    <form [formGroup]="f">
+      <label>
+        <div>Delay</div>
+        <input
+          type="number"
+          formControlName="delay"
+          step="100"
+          min="0"
+          max="10000"
+        />
+      </label>
+    </form>
+  </ng-template>
+
+  <app-collapse [content]="anim" [closed]="false">
+    <span>Animation</span>
+  </app-collapse>
+  <ng-template #anim>
+    <app-tree-search
+      [delay]="+f.value.delay"
+      [searchTree]="dfsTree"
+      height="170em"
+      [itemToString]="itemToString"
+    ></app-tree-search>
+  </ng-template>
+</main>
