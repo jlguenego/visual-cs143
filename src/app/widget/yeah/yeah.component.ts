@@ -32,6 +32,8 @@ export class YeahComponent implements OnInit, OnDestroy {
   ngOnInit(): void {}
 
   clear(): void {
+    enableBodyScroll(this.elt.nativeElement);
+    clearAllBodyScrollLocks();
     this.visible = false;
   }
 
