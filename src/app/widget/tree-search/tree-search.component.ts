@@ -11,9 +11,12 @@ export type ItemToStringFn = (item: unknown | null) => string;
 })
 export class TreeSearchComponent implements OnInit, OnDestroy {
   @Input() delay = 50;
-  @Input() bfsTree!: BFSTreeAsync<unknown> | null;
+  @Input() bfsTree = new BFSTreeAsync<unknown>(
+    0,
+    async () => true,
+    async () => []
+  );
   @Input() height = '40em';
-  @Input() itemToString!: ItemToStringFn;
 
   stack$ = new Subject<Tree<unknown>[]>();
   tree$ = new Subject<Tree<unknown>>();
@@ -23,8 +26,6 @@ export class TreeSearchComponent implements OnInit, OnDestroy {
   maxStackSize$ = new BehaviorSubject(0);
   treeSize$ = new BehaviorSubject(0);
 
-  searching = false;
-  finished = false;
   firstTime = true;
 
   constructor(private zone: NgZone) {
@@ -36,42 +37,31 @@ export class TreeSearchComponent implements OnInit, OnDestroy {
     };
   }
 
-  ngOnInit(): void {}
+  @Input() itemToString: ItemToStringFn = () => '';
 
-  async start(): Promise<void> {
-    this.firstTime = false;
-    this.finished = false;
-    this.searching = true;
-    if (!this.bfsTree) {
-      return;
-    }
-    this.bfsTree.interrupt();
-
+  ngOnInit(): void {
     this.bfsTree.subject.subscribe((info) => {
       this.zone.run(() => {
         this.stack$.next(info.stack);
         this.tree$.next(info.tree);
-        if (info.currentValue !== undefined) {
-          this.currentValue$.next(info.currentValue);
-        }
+        this.currentValue$.next(info.currentValue);
         this.testNbr$.next(info.metrics.testNbr);
         this.maxStackSize$.next(info.metrics.maxStackSize);
         this.treeSize$.next(info.metrics.treeSize);
       });
     });
-    const result = await this.bfsTree.search();
-    this.searching = false;
-    if (result !== undefined) {
-      this.finished = true;
+  }
+
+  async start(): Promise<void> {
+    if (this.bfsTree.found) {
+      this.bfsTree.reset();
     }
+    await this.bfsTree.search();
+    this.firstTime = false;
   }
 
   stop(): void {
-    if (this.bfsTree) {
-      this.bfsTree.interrupt();
-      this.searching = false;
-      this.finished = false;
-    }
+    this.bfsTree.interrupt();
   }
 
   ngOnDestroy(): void {

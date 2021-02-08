@@ -1,13 +1,21 @@
+<div>
+  <span>Searching: {{ bfsTree.searching }}</span>
+</div>
 <div class="grid" [style.gridTemplateRows]="'3em 3em ' + height">
   <div class="restart">
-    <button *ngIf="searching" (click)="stop()">Stop</button>
-    <button *ngIf="!searching && firstTime" (click)="start()">Start</button>
-    <button *ngIf="!searching && !firstTime" (click)="start()">Restart</button>
+    <ng-container *ngIf="!bfsTree.searching">
+      <button *ngIf="firstTime" (click)="start()">Start</button>
+      <button *ngIf="!firstTime" (click)="start()">Restart</button>
+    </ng-container>
+    <ng-container *ngIf="bfsTree.searching">
+      <button *ngIf="bfsTree.interrupted" (click)="start()">Continue</button>
+      <button *ngIf="!bfsTree.interrupted" (click)="stop()">Stop</button>
+    </ng-container>
   </div>
   <div class="testing">
-    <div [class.found]="!finished">
-      <span class="label" *ngIf="!finished">Current: </span>
-      <span class="label" *ngIf="finished">Final: </span>
+    <div [class.found]="bfsTree.found">
+      <span class="label" *ngIf="!bfsTree.found">Current: </span>
+      <span class="label" *ngIf="bfsTree.found">Final: </span>
       <span class="current-value">{{
         itemToString(currentValue$ | async)
       }}</span>
@@ -43,4 +51,4 @@
     ></app-stack>
   </div>
 </div>
-<app-yeah [visible]="finished"></app-yeah>
+<app-yeah [visible]="bfsTree.found"></app-yeah>
