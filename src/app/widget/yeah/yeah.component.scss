@@ -9,6 +9,10 @@ div.visible {
   width: 100vw;
   height: 100vh;
   background: hsla(0, 0%, 0%, 0.5);
+  cursor: pointer;
+  &[hidden] {
+    display: none;
+  }
 }
 img {
   position: fixed;

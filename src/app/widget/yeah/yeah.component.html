@@ -1,3 +1,3 @@
-<div *ngIf="visible" (click)="clear()" class="visible">
+<div [hidden]="!visible" (click)="clear()" class="visible">
   <img src="assets/yeah.jpg" alt="Yeah! Finished!" />
 </div>
