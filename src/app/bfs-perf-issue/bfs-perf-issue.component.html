@@ -1,1 +1,59 @@
-<p>bfs-perf-issue works!</p>
+<main>
+  <h1>Leftmost BFS has problems</h1>
+  <app-collapse [content]="description">
+    <span>Description</span>
+  </app-collapse>
+  <ng-template #description>
+    <article class="description">
+      <h2>CS143 Source</h2>
+      <p>
+        <a [href]="cs143"> CS143 Top Down Parsing, part I. Slide 11. </a>
+      </p>
+      <h2>Description</h2>
+      <p>Here is the problems:</p>
+      <ul>
+        <li>Some grammars may requires big number of tests</li>
+        <li>Some grammars may requires big stack (so big memory)</li>
+      </ul>
+      <p>Example of nightmare grammar:</p>
+      <code>
+        <ul>
+          <li>A => Aa</li>
+          <li>A => Ab</li>
+          <li>A => c</li>
+        </ul>
+      </code>
+      <p>We parse the following sentence (c followed by 8 a):</p>
+      <code>caaaaaaaa</code>
+    </article>
+  </ng-template>
+  <app-collapse [content]="config">
+    <span>Config</span>
+  </app-collapse>
+  <ng-template #config>
+    <form [formGroup]="f">
+      <label>
+        <div>Delay</div>
+        <input
+          type="number"
+          formControlName="delay"
+          step="100"
+          min="0"
+          max="10000"
+        />
+      </label>
+    </form>
+  </ng-template>
+
+  <app-collapse [content]="anim" [closed]="false">
+    <span>Animation</span>
+  </app-collapse>
+  <ng-template #anim>
+    <app-tree-search
+      [delay]="+f.value.delay"
+      [searchTree]="bfsTree"
+      height="170em"
+      [itemToString]="itemToString"
+    ></app-tree-search>
+  </ng-template>
+</main>
