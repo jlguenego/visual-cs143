@@ -6,6 +6,8 @@ import { Tree } from '@jlguenego/tree';
   providedIn: 'root',
 })
 export class UtilsService {
+  cs143s03 =
+    'https://web.stanford.edu/class/archive/cs/cs143/cs143.1128/lectures/03/Slides03.pdf';
   constructor() {}
 
   itemToString(item: unknown | null): string {

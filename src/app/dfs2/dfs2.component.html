@@ -1,1 +1,73 @@
-<p>dfs2 works!</p>
+<main>
+  <h1>Parse a sentence with DFS2</h1>
+  <app-collapse [content]="description">
+    <span>Description</span>
+  </app-collapse>
+  <ng-template #description>
+    <article class="description">
+      <h2>CS143 Source</h2>
+      <p>
+        <a [href]="utils.cs143s03">
+          CS143 Top Down Parsing, part I. Slide 130.
+        </a>
+      </p>
+      <h2>Description</h2>
+      <p>
+        This animation shows a sentence parsing with depth-first search, with
+        some optimizations. This is the last example with a
+        <strong>backtracking</strong>
+        algorithm. Next examples will use <strong>predictive</strong> algorithm
+        (LL1, etc.).
+      </p>
+      <p>Improvements are:</p>
+      <ul>
+        <li>1 lookahead token with check if the lookahead is in FIRST(nt)</li>
+        <li>filtering production rules according the lookahead</li>
+      </ul>
+      <p>We have a context free grammar (CFG) defined as follows:</p>
+      <code>
+        <ul>
+          <li>E => T + E</li>
+          <li>E => T</li>
+          <li>T => int</li>
+          <li>T => (E)</li>
+        </ul>
+      </code>
+      <p>
+        Note that we have switched the first two rules to show the worst case.
+      </p>
+      <p>We parse the following sentence:</p>
+      <code>int + ( int + int )</code>
+    </article>
+  </ng-template>
+  <app-collapse [content]="config">
+    <span>Config</span>
+  </app-collapse>
+  <ng-template #config>
+    <form [formGroup]="f">
+      <label>
+        <div>Delay</div>
+        <input
+          type="number"
+          formControlName="delay"
+          step="100"
+          min="0"
+          max="10000"
+        />
+      </label>
+    </form>
+  </ng-template>
+
+  <app-collapse [content]="anim" [closed]="false">
+    <span>Animation</span>
+  </app-collapse>
+  <ng-template #anim>
+    <app-tree-search
+      class="show-only-tree"
+      [delay]="+f.value.delay"
+      [searchTree]="dfsTree"
+      height="20em"
+      [itemToString]="utils.itemToString"
+    ></app-tree-search>
+  </ng-template>
+</main>
