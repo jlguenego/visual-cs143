@@ -40,12 +40,12 @@ export class PreviousNextComponent implements OnInit {
       this.visible = true;
       this.prevPath = '';
       this.nextPath = '';
-      if (index > 0) {
-        this.prevPath = this.config[index - 1].path as string;
-      }
-      if (index < this.config.length - 1) {
-        this.nextPath = this.config[index + 1].path as string;
-      }
+      this.prevPath = (index > 0
+        ? this.config[index - 1].path
+        : this.config[this.config.length - 1].path) as string;
+      this.nextPath = (index < this.config.length - 1
+        ? this.config[index + 1].path
+        : this.config[0].path) as string;
     });
   }
 }

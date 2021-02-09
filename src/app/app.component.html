@@ -11,10 +11,7 @@
     </header>
   </section>
   <section class="main">
-    <app-previous-next
-      [config]="config"
-      *ngIf="showPrevNext"
-    ></app-previous-next>
+    <app-previous-next [config]="config"></app-previous-next>
     <router-outlet></router-outlet>
   </section>
   <section class="footer">

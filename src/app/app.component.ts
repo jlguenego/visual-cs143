@@ -11,9 +11,8 @@ import { Router } from '@angular/router';
 export class AppComponent {
   faBars = faBars;
   faGithub = faGithub;
-  showPrevNext = true;
 
-  config = this.router.config.slice(3);
+  config = this.router.config.slice(2);
 
   constructor(private router: Router) {}
 }
