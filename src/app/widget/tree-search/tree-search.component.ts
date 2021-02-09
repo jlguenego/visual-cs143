@@ -3,6 +3,7 @@ import { BFSTreeAsync, SearchTreeAsync, Tree } from '@jlguenego/tree';
 import { BehaviorSubject, Subject } from 'rxjs';
 
 export type ItemToStringFn = (item: unknown | null) => string;
+export type FailConditionFn = () => boolean;
 
 @Component({
   selector: 'app-tree-search',
@@ -28,16 +29,15 @@ export class TreeSearchComponent implements OnInit, OnDestroy {
 
   firstTime = true;
 
-  constructor(private zone: NgZone) {
-    this.itemToString = (item: unknown | null): string => {
-      if (!item) {
-        return '';
-      }
-      return (item as { node: string }).node ?? '';
-    };
-  }
+  constructor(private zone: NgZone) {}
 
-  @Input() itemToString: ItemToStringFn = () => '';
+  @Input() itemToString: ItemToStringFn = (item: unknown | null): string => {
+    if (!item) {
+      return '';
+    }
+    return (item as { node: string }).node ?? '';
+  };
+  @Input() failCondition: FailConditionFn = () => false;
 
   ngOnInit(): void {
     this.searchTree.subject.subscribe((info) => {
@@ -48,11 +48,19 @@ export class TreeSearchComponent implements OnInit, OnDestroy {
         this.testNbr$.next(info.metrics.testNbr);
         this.maxStackSize$.next(info.metrics.maxStackSize);
         this.treeSize$.next(info.metrics.treeSize);
+
+        if (this.failCondition()) {
+          this.stop();
+          this.searchTree.searching = false;
+        }
       });
     });
   }
 
   async start(): Promise<void> {
+    if (this.failCondition()) {
+      this.searchTree.reset();
+    }
     if (this.searchTree.found) {
       this.searchTree.reset();
     }

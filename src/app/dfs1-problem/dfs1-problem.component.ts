@@ -61,4 +61,11 @@ export class Dfs1ProblemComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  failConditionTest(): boolean {
+    const length =
+      (this.dfsTree?.currentValue
+        ?.node as PartialParseTree)?.sententialForm.toString().length ?? 0;
+    return length > 20;
+  }
 }

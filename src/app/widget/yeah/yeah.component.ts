@@ -13,6 +13,8 @@ import {
 export class YeahComponent implements OnInit, OnDestroy {
   private pVisible = false;
 
+  @Input() src = 'assets/yeah.jpg';
+
   @Input()
   get visible(): boolean {
     return this.pVisible;
