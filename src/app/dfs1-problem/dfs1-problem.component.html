@@ -19,6 +19,7 @@
           <li>A => ε</li>
         </ul>
       </code>
+      <p>This grammar is said to be <strong>left-recursive</strong></p>
       <p>We parse this very simple sentence (just one terminal):</p>
       <code>c</code>
     </article>
@@ -30,6 +31,11 @@
     </p>
 
     <p><strong>Warning!!! </strong> This parser never stops!</p>
+
+    <p>
+      Fortunately, in many cases it is possible to update the grammar to remove
+      the left-recursion, keeping the same language.
+    </p>
   </ng-template>
   <app-collapse [content]="config">
     <span>Config</span>
