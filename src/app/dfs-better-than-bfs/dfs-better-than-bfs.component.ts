@@ -44,7 +44,7 @@ export class DfsBetterThanBfsComponent implements OnInit {
       ],
     };
     const cfg1 = new ContextFreeGrammar(spec as CFGSpec, t, nt);
-    const sentence: Sentence = ['c', ...new Array(8).fill('a')].map((str) => ({
+    const sentence: Sentence = ['c', ...new Array(6).fill('a')].map((str) => ({
       name: str,
     }));
     this.dfsTree = new DFSTreeAsync<PartialParseTree>(
