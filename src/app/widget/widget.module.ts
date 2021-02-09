@@ -1,3 +1,4 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgModule } from '@angular/core';
@@ -18,7 +19,7 @@ import { TreeSearchComponent } from './tree-search/tree-search.component';
     PreviousNextComponent,
     TreeSearchComponent,
   ],
-  imports: [CommonModule, FontAwesomeModule, RouterModule],
+  imports: [CommonModule, FontAwesomeModule, RouterModule, ReactiveFormsModule],
   exports: [
     TreeComponent,
     StackComponent,
@@ -26,6 +27,7 @@ import { TreeSearchComponent } from './tree-search/tree-search.component';
     YeahComponent,
     PreviousNextComponent,
     TreeSearchComponent,
+    ReactiveFormsModule,
   ],
 })
 export class WidgetModule {}

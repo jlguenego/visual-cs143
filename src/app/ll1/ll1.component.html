@@ -1,1 +1,65 @@
-<p>ll1 works!</p>
+<main>
+  <h1>Parse a sentence with LL1</h1>
+  <app-collapse [content]="description">
+    <span>Description</span>
+  </app-collapse>
+  <ng-template #description>
+    <article class="description">
+      <h2>CS143 Source</h2>
+      <p>
+        <a [href]="utils.cs143s03">
+          CS143 Top Down Parsing, part I. Slide 161.
+        </a>
+      </p>
+      <h2>Description</h2>
+      <p>
+        This animation shows a sentence parsing with LL(1) algorithm. You can
+        see that there is no backtracking anymore. But the grammar needs to be
+        LL(1) compatible.
+      </p>
+      <p>
+        We have a context free grammar (CFG) that is LL(1) defined as follows:
+      </p>
+      <code>
+        <ul>
+          <li>E => int</li>
+          <li>E => (E Op E)</li>
+          <li>Op => +</li>
+          <li>Op => *</li>
+        </ul>
+      </code>
+      <p>We parse the following sentence:</p>
+      <code>(int + (int * int))</code>
+    </article>
+  </ng-template>
+  <app-collapse [content]="config">
+    <span>Config</span>
+  </app-collapse>
+  <ng-template #config>
+    <form [formGroup]="f">
+      <label>
+        <div>Delay</div>
+        <input
+          type="number"
+          formControlName="delay"
+          step="100"
+          min="0"
+          max="10000"
+        />
+      </label>
+    </form>
+  </ng-template>
+
+  <app-collapse [content]="anim" [closed]="false">
+    <span>Animation</span>
+  </app-collapse>
+  <ng-template #anim>
+    <app-tree-search
+      class="show-only-tree"
+      [delay]="+f.value.delay"
+      [searchTree]="dfsTree"
+      height="25em"
+      [itemToString]="utils.itemToString"
+    ></app-tree-search>
+  </ng-template>
+</main>
