@@ -1,0 +1,58 @@
+<main>
+  <h1>Parse a sentence with LLk</h1>
+  <app-collapse [content]="description">
+    <span>Description</span>
+  </app-collapse>
+  <ng-template #description>
+    <article class="description">
+      <h2>CS143 Source</h2>
+      <p>
+        Outside the scope of CS143, but you can see all the theory in
+        <a href="https://dl.acm.org/doi/book/10.5555/578789">
+          Aho Ullman - The theory of parsing, translation, and compilingJanuary
+          1972 Vol 1
+        </a>
+      </p>
+      <h2>Description</h2>
+      <p>The animation shows a k-predictive algorithm in action (k=2).</p>
+      <p>
+        We have a context free grammar (CFG) that is LL(2) but not strong LL(2),
+        defined as follows:
+      </p>
+      <code>
+        <ul>
+          <li>S => a A a a</li>
+          <li>S => b A b a</li>
+          <li>A => ε</li>
+          <li>A => b</li>
+        </ul>
+      </code>
+      <p>We parse the following sentence:</p>
+      <code>abaa</code>
+    </article>
+  </ng-template>
+  <app-collapse [content]="config">
+    <span>Config</span>
+  </app-collapse>
+  <ng-template #config>
+    <form [formGroup]="f">
+      <label>
+        <div>Delay</div>
+        <input
+          type="number"
+          formControlName="delay"
+          step="100"
+          min="0"
+          max="10000"
+        />
+      </label>
+    </form>
+  </ng-template>
+
+  <app-collapse [content]="anim" [closed]="false">
+    <span>Animation</span>
+  </app-collapse>
+  <ng-template #anim>
+    <p>Here I will put my animation later.</p>
+  </ng-template>
+</main>

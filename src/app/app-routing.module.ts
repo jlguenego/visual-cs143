@@ -54,6 +54,7 @@ const routes: Routes = [
     loadChildren: () => import('./dfs2/dfs2.module').then((m) => m.Dfs2Module),
   },
   { path: 'll1', loadChildren: () => import('./ll1/ll1.module').then(m => m.Ll1Module) },
+  { path: 'llk', loadChildren: () => import('./llk/llk.module').then(m => m.LlkModule) },
 ];
 
 @NgModule({
