@@ -1,0 +1,27 @@
+div.grid {
+  padding: 1em 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 3em auto;
+  grid-template-areas:
+    "restart restart restart"
+    "inputTape pushdownList outputTape";
+
+  div.restart {
+    grid-area: restart;
+  }
+  div.inputTape {
+    grid-area: inputTape;
+  }
+  div.pushdownList {
+    grid-area: pushdownList;
+  }
+  div.outputTape {
+    grid-area: outputTape;
+  }
+}
+
+.selected {
+  background: #333;
+  color: white;
+}

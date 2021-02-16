@@ -1,1 +1,37 @@
-<p>k-predictive-algo works!</p>
+<div class="grid">
+  <div class="restart">
+    <ng-container *ngIf="!parsing">
+      <button *ngIf="firstTime" (click)="start()">Start</button>
+      <button *ngIf="!firstTime" (click)="start()">Restart</button>
+    </ng-container>
+    <ng-container *ngIf="parsing">
+      <button *ngIf="interrupted" (click)="start()">Continue</button>
+      <button *ngIf="!interrupted" (click)="stop()">Stop</button>
+    </ng-container>
+  </div>
+  <div class="inputTape">
+    <span>inputTape</span>
+    <div
+      *ngFor="let t of algo?.inputTape; let i = index"
+      [class.selected]="i === algo?.inputTapeCursor"
+    >
+      {{ t.name }}
+    </div>
+  </div>
+  <div class="pushdownList">
+    <span>pushdownList</span>
+    <div
+      *ngFor="let s of algo?.pushdownList; let i = index"
+      [class.selected]="i === 0"
+    >
+      {{ symbolToString(s) }}
+    </div>
+  </div>
+  <div class="outputTape">
+    <span>outputTape</span>
+    <div *ngFor="let prodIndex of algo?.outputTape">
+      {{ prodIndex }}
+    </div>
+  </div>
+</div>
+<span>isFinished = {{ algo?.isFinished }}</span>
