@@ -9,6 +9,7 @@ import { CollapseComponent } from './collapse/collapse.component';
 import { YeahComponent } from './yeah/yeah.component';
 import { PreviousNextComponent } from './previous-next/previous-next.component';
 import { TreeSearchComponent } from './tree-search/tree-search.component';
+import { KPredictiveAlgoComponent } from './k-predictive-algo/k-predictive-algo.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { TreeSearchComponent } from './tree-search/tree-search.component';
     YeahComponent,
     PreviousNextComponent,
     TreeSearchComponent,
+    KPredictiveAlgoComponent,
   ],
   imports: [CommonModule, FontAwesomeModule, RouterModule, ReactiveFormsModule],
   exports: [
@@ -28,6 +30,7 @@ import { TreeSearchComponent } from './tree-search/tree-search.component';
     PreviousNextComponent,
     TreeSearchComponent,
     ReactiveFormsModule,
+    KPredictiveAlgoComponent,
   ],
 })
 export class WidgetModule {}
