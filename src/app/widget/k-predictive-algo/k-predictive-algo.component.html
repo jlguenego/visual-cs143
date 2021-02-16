@@ -9,9 +9,16 @@
       <button *ngIf="!interrupted" (click)="stop()">Stop</button>
     </ng-container>
   </div>
+  <div class="result">
+    <span>
+      M(k,u) =
+      {{ nextMove() }}
+    </span>
+  </div>
   <div class="inputTape">
     <span>inputTape</span>
     <div
+      class="box"
       *ngFor="let t of algo?.inputTape; let i = index"
       [class.selected]="i === algo?.inputTapeCursor"
     >
@@ -21,6 +28,7 @@
   <div class="pushdownList">
     <span>pushdownList</span>
     <div
+      class="box"
       *ngFor="let s of algo?.pushdownList; let i = index"
       [class.selected]="i === 0"
     >
@@ -29,9 +37,8 @@
   </div>
   <div class="outputTape">
     <span>outputTape</span>
-    <div *ngFor="let prodIndex of algo?.outputTape">
+    <div class="box" *ngFor="let prodIndex of algo?.outputTape">
       {{ prodIndex }}
     </div>
   </div>
 </div>
-<span>isFinished = {{ algo?.isFinished }}</span>

@@ -4,24 +4,57 @@ div.grid {
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 3em auto;
   grid-template-areas:
-    "restart restart restart"
+    "restart result result"
     "inputTape pushdownList outputTape";
 
   div.restart {
     grid-area: restart;
+    display: flex;
+    align-items: center;
+  }
+  div.result {
+    grid-area: result;
+    display: flex;
+    align-items: center;
+    span {
+      display: flex;
+      align-items: center;
+      padding: 0.5em 1em;
+      border: 0.1em solid #eee;
+      width: 100%;
+    }
   }
   div.inputTape {
     grid-area: inputTape;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
   }
   div.pushdownList {
     grid-area: pushdownList;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
   }
   div.outputTape {
     grid-area: outputTape;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
   }
 }
 
 .selected {
-  background: #333;
+  background: #555;
   color: white;
+}
+
+div.box {
+  border: 0.1em solid #555;
+  padding: 0.5em;
+  margin: 0.25em;
+  width: 3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

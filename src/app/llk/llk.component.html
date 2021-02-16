@@ -9,9 +9,10 @@
       <p>
         Outside the scope of CS143, but you can see all the theory in
         <a href="https://dl.acm.org/doi/book/10.5555/578789">
-          Aho Ullman - The theory of parsing, translation, and compilingJanuary
-          1972 Vol 1
+          Aho Ullman - The theory of parsing, translation, and compiling,
+          January 1972 Vol 1
         </a>
+        Chapter 5.1.
       </p>
       <h2>Description</h2>
       <p>The animation shows a k-predictive algorithm in action (k=2).</p>
@@ -21,14 +22,20 @@
       </p>
       <code>
         <ul>
-          <li>S => a A a a</li>
-          <li>S => b A b a</li>
-          <li>A => ε</li>
-          <li>A => b</li>
+          <li>(0) S => a A a a</li>
+          <li>(1) S => b A b a</li>
+          <li>(2) A => ε</li>
+          <li>(3) A => b</li>
         </ul>
       </code>
       <p>We parse the following sentence:</p>
       <code>abaa</code>
+      <p>
+        M(k,u) represents the next move, computed from the LLk parsing table.
+        Its result can be 'pop', 'error', 'accept' or (β, i) where
+        <code>β</code> is the pushdown list replacement, and <code>i</code> is
+        the production rule index.
+      </p>
     </article>
   </ng-template>
   <app-collapse [content]="config">

@@ -17,7 +17,7 @@ import {
 })
 export class LlkComponent implements OnInit {
   f = new FormGroup({
-    delay: new FormControl(50),
+    delay: new FormControl(500),
   });
 
   algo!: KPredictiveParser;

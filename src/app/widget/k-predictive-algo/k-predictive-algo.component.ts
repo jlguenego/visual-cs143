@@ -3,6 +3,8 @@ import {
   KPredictiveParser,
   NonTerminal,
   ParseSymbol,
+  ParsingResultEnum,
+  ParsingResultRule,
 } from '@jlguenego/syntax-analysis';
 import { Component, Input, OnInit } from '@angular/core';
 
@@ -59,5 +61,30 @@ export class KPredictiveAlgoComponent implements OnInit {
       return s.label;
     }
     return s.name;
+  }
+
+  nextMove(): string {
+    const algo = this.algo;
+    if (!algo) {
+      return '';
+    }
+    const X = algo.pushdownList[0];
+    const u = algo.getLookaheadString();
+    const M = algo.parsingTable;
+    const nextMove = M(X, u);
+    if (nextMove instanceof ParsingResultRule) {
+      return `{ ${nextMove.beta}, ${nextMove.i}}`;
+    }
+
+    if (nextMove === ParsingResultEnum.POP) {
+      return 'pop';
+    }
+    if (nextMove === ParsingResultEnum.ACCEPT) {
+      return 'accept';
+    }
+    if (nextMove === ParsingResultEnum.ERROR) {
+      return 'error';
+    }
+    throw new Error('unexpected');
   }
 }
