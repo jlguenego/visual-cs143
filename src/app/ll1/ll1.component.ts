@@ -33,6 +33,8 @@ export class Ll1Component implements OnInit {
     const nt = defineNonTerminalAlphabet(['E', 'Op'] as const);
 
     const spec: CFGSpecifications<typeof t, typeof nt> = {
+      nt,
+      t,
       startSymbol: 'E',
       productions: [
         { LHS: 'E', RHS: ['int'] },
@@ -41,7 +43,7 @@ export class Ll1Component implements OnInit {
         { LHS: 'Op', RHS: ['*'] },
       ],
     };
-    const cfg1 = new ContextFreeGrammar(spec as CFGSpec, t, nt, {
+    const cfg1 = new ContextFreeGrammar(spec, {
       ll1: true,
     });
     const sentence: Sentence = '( int + ( int * int ) )'

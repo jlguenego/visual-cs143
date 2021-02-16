@@ -6,7 +6,6 @@ import {
   defineNonTerminalAlphabet,
   CFGSpecifications,
   ContextFreeGrammar,
-  CFGSpec,
   Sentence,
   getBFS1TreeAsync,
 } from '@jlguenego/syntax-analysis';
@@ -33,6 +32,8 @@ export class BfsPerfIssueComponent implements OnInit {
     const nt = defineNonTerminalAlphabet(['A'] as const);
 
     const spec: CFGSpecifications<typeof t, typeof nt> = {
+      nt,
+      t,
       startSymbol: 'A',
       productions: [
         { LHS: 'A', RHS: ['A', 'a'] },
@@ -40,7 +41,7 @@ export class BfsPerfIssueComponent implements OnInit {
         { LHS: 'A', RHS: ['c'] },
       ],
     };
-    const cfg1 = new ContextFreeGrammar(spec as CFGSpec, t, nt);
+    const cfg1 = new ContextFreeGrammar(spec);
     const sentence: Sentence = ['c', ...new Array(6).fill('a')].map((str) => ({
       name: str,
     }));

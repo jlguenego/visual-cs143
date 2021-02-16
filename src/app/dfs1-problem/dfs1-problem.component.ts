@@ -5,7 +5,6 @@ import {
   defineNonTerminalAlphabet,
   CFGSpecifications,
   ContextFreeGrammar,
-  CFGSpec,
   Sentence,
   PartialParseTree,
   ParseSymbol,
@@ -36,6 +35,8 @@ export class Dfs1ProblemComponent implements OnInit {
     const nt = defineNonTerminalAlphabet(['A', 'B'] as const);
 
     const spec: CFGSpecifications<typeof t, typeof nt> = {
+      nt,
+      t,
       startSymbol: 'A',
       productions: [
         { LHS: 'A', RHS: [] },
@@ -43,7 +44,7 @@ export class Dfs1ProblemComponent implements OnInit {
         { LHS: 'A', RHS: ['A', 'a'] },
       ],
     };
-    const cfg1 = new ContextFreeGrammar(spec as CFGSpec, t, nt);
+    const cfg1 = new ContextFreeGrammar(spec);
     const emptyProd = cfg1.hasEmptyProduction();
     console.log('emptyProd: ', emptyProd);
     const sentence: Sentence = ['c'].map((str) => ({

@@ -33,6 +33,8 @@ export class Bfs2Component implements OnInit {
     const nt = defineNonTerminalAlphabet(['E', 'T'] as const);
 
     const spec: CFGSpecifications<typeof t, typeof nt> = {
+      nt,
+      t,
       startSymbol: 'E',
       productions: [
         { LHS: 'E', RHS: ['T'] },
@@ -41,7 +43,7 @@ export class Bfs2Component implements OnInit {
         { LHS: 'T', RHS: ['(', 'E', ')'] },
       ],
     };
-    const cfg1 = new ContextFreeGrammar(spec as CFGSpec, t, nt);
+    const cfg1 = new ContextFreeGrammar(spec);
     const sentence: Sentence = ['int', '+', 'int'].map((str) => ({
       name: str,
     }));
