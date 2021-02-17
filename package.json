@@ -23,7 +23,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
     "@fortawesome/free-brands-svg-icons": "^5.15.2",
     "@fortawesome/free-solid-svg-icons": "^5.15.2",
-    "@jlguenego/syntax-analysis": "^1.6.1",
+    "@jlguenego/syntax-analysis": "^1.6.2",
     "@jlguenego/tree": "^1.8.0",
     "body-scroll-lock": "^3.1.5",
     "cigale": "^1.1.1",
